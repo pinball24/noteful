@@ -1,16 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { NavLink, Link } from 'react-router-dom'
 
 
-export default class MainSidebar extends Component {
-    render() {
-        return (
-            <div className="FolderListNav">
-                <ul className="FolderListNav__list">
-                    <li>Important</li>
-                    <li>Super</li>    
-                    <li>Spangly</li>
-                </ul>
-            </div>
-        )
-    }
+export default function MainSidebar(props) {
+    const { folders } = this.props
+    return (
+        <div className="FolderListNav">
+            <ul className="FolderListNav__list">
+                {folders.map(folder =>
+                    <li key={folder.id}>
+                        <NavLink to={'/folder/${folder.id}'}>
+                            {folder.name}
+                        </NavLink>
+                    </li>
+                )}
+            </ul>
+        </div>
+    )
 }

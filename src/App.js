@@ -11,19 +11,26 @@ export default class App extends Component {
   state = {
     dummy
   }
+
   render() {
-    console.log(this.state)
+    const { dummy } = this.state
+    console.log(dummy)
     return (
       <div className="App">
         <Header />
-        <Sidebar
-          folders={this.state.dummy.folders}
-        />
+        <Sidebar>
+          <Route
+            exact
+            path='/folder/:folderId'
+            render={routeProps => (
+              <MainSidebar
+                folders={dummy.folders}
+                {...routeProps}
+              />
+            )}
+          />
+        </Sidebar>
         <Main>
-          <Route 
-            exact 
-            path='/' />
-          {/*<Route path='/folder' component={NoteMain} />*/}
         </Main>
       </div>
     )

@@ -4,8 +4,8 @@ import Header from './Header/Header'
 import Main from './Main/Main'
 import dummy from './dummy-store'
 import './App.css';
-import MainSidebar from './Sidebar/MainSidebar'
 import Sidebar from './Sidebar/Sidebar'
+import NotesPage from './NotesPage/NotesPage'
 
 export default class App extends Component {
   state = {
@@ -14,24 +14,35 @@ export default class App extends Component {
 
   render() {
     const { dummy } = this.state
-    console.log(dummy)
     return (
       <div className="App">
         <Header />
-        <Sidebar>
-          <Route
-            exact
-            path='/folder/:folderId'
+          <Route 
+            exact 
+            path='/'
             render={routeProps => (
-              <MainSidebar
-                folders={dummy.folders}
+              <Main 
+                notes={dummy.notes}
+                {...routeProps} />
+            )}
+          />
+          <Route
+            path='/'
+            render={routeProps => (
+              <Sidebar
                 {...routeProps}
+                folders={dummy.folders}
               />
             )}
           />
-        </Sidebar>
-        <Main>
-        </Main>
+          <Route
+            path='/notes/:noteId'
+            render={routeProps => (
+              <NotesPage 
+                notes={dummy.notes}
+                {...routeProps} />
+            )}
+          />
       </div>
     )
   }

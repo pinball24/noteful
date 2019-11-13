@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import './Header.css'
 
-export default class Header extends Component {
-    render() {
+export default function Header(props) {
         return (
             <header className="App-header">
-                <h1>Noteful</h1>
-            </header>
-        )
-    }
+                <h1>
+                    <Link to='/'>Noteful</Link>
+                </h1>
+        </header>
+    )
 }

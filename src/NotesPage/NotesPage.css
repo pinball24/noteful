@@ -1,3 +1,13 @@
-.Notes {
-    
+.Note {
+    --note-height: 88px;
+    margin: 0;
+    padding: 10px 0 10px 10px;
+    position: relative;
+    max-width: 400px;
+    border: 1px solid black;
+}
+
+.Note__delete {
+    float: right;
+    border-radius: 0px;
 }

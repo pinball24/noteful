@@ -4,7 +4,7 @@ import './Sidebar.css'
 
 export default function Sidebar(props) {
   function renderList() {
-      console.log(props.match.params)
+      console.log(props)
       if (!props.match.params.noteId)
       return (
         <ul className="FolderListNav__list">

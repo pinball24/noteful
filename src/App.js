@@ -2,59 +2,91 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import Header from './Header/Header'
 import Main from './Main/Main'
-import dummy from './dummy-store'
 import './App.css';
 import Sidebar from './Sidebar/Sidebar'
 import NotesPage from './NotesPage/NotesPage'
 import FolderMain from './FolderMain/FolderMain'
+import config from './config'
+import NoteContext from './NoteContext'
 
 export default class App extends Component {
   state = {
-    dummy
+    folders: [],
+    notes: [],
+    error: null,
+  }
+
+  setFolders = folders => {
+    this.setState({
+      folders: folders
+    })
+  }
+
+  setNotes = notes => {
+    this.setState({
+      notes: notes
+    })
+  }
+
+  componentDidMount() {
+    fetch(config.FOLDERS_ENDPOINT, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status)
+        }
+        return res.json()
+      })
+      .then(this.setFolders)
+      .catch(error => this.setState({ error }))
+    fetch(config.NOTES_ENDPOINT, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status)
+        }
+        return res.json()
+      })
+      .then(this.setNotes)
+      .catch(error => this.setState({ error }))
   }
 
   render() {
+    const contextValue = {
+      folders: this.state.folders,
+      notes: this.state.notes,
+    }
 
-    const { dummy } = this.state
     return (
       <div className="App">
         <Header />
-        <Route
-          exact
-          path='/'
-          render={routeProps => (
-            <Main
-              notes={dummy.notes}
-              {...routeProps}
-            />
-          )}
-        />
-        <Route
-          path='/folder/:folderId'
-          render={props => (
-            <FolderMain
-              {...props}
-              folderContent={dummy}
-            />
-          )}
-        />
-        <Route
-          path='/'
-          render={props => (
-            <Sidebar
-              {...props}
-              folders={dummy.folders}
-            />
-          )}
-        />
-        <Route
-          path='/notes/:noteId'
-          render={routeProps => (
-            <NotesPage 
-              notes={dummy.notes}
-              {...routeProps} />
-          )}
-        />
+        <NoteContext.Provider value={contextValue}>          
+          <Route
+            exact
+            path='/'
+            component={Main}
+          />
+          <Route
+            path='/folders/:folderId'
+            component={FolderMain}
+          />
+          <Route
+            path='/'
+            component={Sidebar}
+          />
+          <Route
+            path='/notes/:noteId'
+            component={NotesPage}
+          />
+        </NoteContext.Provider>
       </div>
     )
   }

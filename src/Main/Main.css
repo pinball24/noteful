@@ -1,17 +1,7 @@
-.Note {
-    --note-height: 88px;
-    margin: 0;
-    padding: 10px 0 10px 10px;
-    position: relative;
-    max-width: 400px;
-    border: 1px solid black;
-}
-
 li {
     list-style: none;
 }
 
-.Note__delete {
-    float: right;
-    border-radius: 0px;
+.Main__list ul {
+    list-style-type: none;
 }

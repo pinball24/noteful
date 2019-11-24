@@ -13,7 +13,7 @@
     text-decoration: none;
 }
 
-.FolderListNav__list.active {
+.FolderListNav__item.active {
     background-color: green;
 }
 

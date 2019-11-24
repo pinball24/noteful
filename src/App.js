@@ -4,7 +4,7 @@ import Header from './Header/Header'
 import Main from './Main/Main'
 import './App.css';
 import Sidebar from './Sidebar/Sidebar'
-import NotesPage from './NotesPage/NotesPage'
+import NotesPage from './NotePage/NotePage'
 import FolderMain from './FolderMain/FolderMain'
 import config from './config'
 import NoteContext from './NoteContext'
@@ -25,6 +25,15 @@ export default class App extends Component {
   setNotes = notes => {
     this.setState({
       notes: notes
+    })
+  }
+
+  deleteNote = noteId => {
+    const newNotes = this.state.notes.filter(note =>
+      note.id !== noteId
+    )
+    this.setState({
+      notes: newNotes
     })
   }
 
@@ -63,6 +72,7 @@ export default class App extends Component {
     const contextValue = {
       folders: this.state.folders,
       notes: this.state.notes,
+      deleteNote: this.deleteNote,
     }
 
     return (
@@ -75,7 +85,7 @@ export default class App extends Component {
             component={Main}
           />
           <Route
-            path='/folders/:folderId'
+            path='/folder/:folderId'
             component={FolderMain}
           />
           <Route
@@ -83,7 +93,7 @@ export default class App extends Component {
             component={Sidebar}
           />
           <Route
-            path='/notes/:noteId'
+            path='/note/:noteId'
             component={NotesPage}
           />
         </NoteContext.Provider>

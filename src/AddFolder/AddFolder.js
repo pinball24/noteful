@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import config from '../config'
 import './AddFolder.css'
 
 export default class AddFolder extends Component {
@@ -15,9 +16,32 @@ export default class AddFolder extends Component {
         e.preventDefault()
         const { name } = e.target
         const folder = {
-            name: folder-name.value
+            name: folder.value
         }
-        console.log(folder)
+        this.setState({ error: null })
+        fetch(config.FOLDERS_ENDPOINT, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(res => {
+                if(!res.ok) {
+                    return res.json().then(error => {
+                        throw error
+                    })
+                }
+                return res.json()
+            })
+            .then(data => {
+                folder.value = ''
+                this.context.addFolder(data)
+                this.props.history.push('/')
+            })
+            .catch(error => {
+                console.log(error)
+                this.setState({ error })
+            })
     }
 
     render() {
@@ -29,11 +53,12 @@ export default class AddFolder extends Component {
                     onSubmit={this.handleSubmit}
                 >
                     <div className="field">
-                        <label htmlFor="folder-name">Name</label>
+                        <label htmlFor="folder">Name</label>
                         <input 
-                            id="folder-name" 
-                            name="folder-name"
-                            type="text">
+                            id="folder" 
+                            name="folder"
+                            type="text"
+                            required>
                         </input>
                     </div>
                     <div className='AddFolder__buttons'>

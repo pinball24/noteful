@@ -8,6 +8,7 @@ import NotesPage from './NotePage/NotePage'
 import FolderMain from './FolderMain/FolderMain'
 import config from './config'
 import NoteContext from './NoteContext'
+import AddFolder from './AddFolder/AddFolder'
 
 export default class App extends Component {
   state = {
@@ -19,6 +20,12 @@ export default class App extends Component {
   setFolders = folders => {
     this.setState({
       folders: folders
+    })
+  }
+
+  addFolder = folder => {
+    this.setState({
+      folders: [...this.state.folders, folder],
     })
   }
 
@@ -95,6 +102,10 @@ export default class App extends Component {
           <Route
             path='/note/:noteId'
             component={NotesPage}
+          />
+          <Route
+            path='/add-folder'
+            component={AddFolder}
           />
         </NoteContext.Provider>
       </div>

@@ -23,7 +23,7 @@ export default class Sidebar extends Component {
           </li>
         ))}
           <div className="FolderListNav__button-wrapper">
-            <Link to={'/addFolder'}>
+            <Link to={'/add-folder'}>
               Add Folder
             </Link>
           </div>
@@ -44,7 +44,7 @@ export default class Sidebar extends Component {
             </li>
           ))}
             <div className="FolderListNav__button-wrapper">
-              <Link to={'/addFolder'}>
+              <Link to={'/add-folder'}>
                 Add Folder
               </Link>
             </div>

@@ -80,6 +80,7 @@ export default class App extends Component {
       folders: this.state.folders,
       notes: this.state.notes,
       deleteNote: this.deleteNote,
+      addFolder: this.addFolder,
     }
 
     return (

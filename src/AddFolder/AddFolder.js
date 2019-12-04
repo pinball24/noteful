@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import config from '../config'
+import NoteContext from '../NoteContext'
 import './AddFolder.css'
 
 export default class AddFolder extends Component {
@@ -16,7 +17,7 @@ export default class AddFolder extends Component {
         e.preventDefault()
         const { name } = e.target
         const folder = {
-            name: folder.value
+            name: name.value
         }
         this.setState({ error: null })
         fetch(config.FOLDERS_ENDPOINT, {
@@ -34,8 +35,10 @@ export default class AddFolder extends Component {
                 return res.json()
             })
             .then(data => {
+                console.log(data)
+                console.log(this.context) 
                 folder.value = ''
-                this.context.addFolder(data)
+                //this.context.addFolder(data)
                 this.props.history.push('/')
             })
             .catch(error => {
@@ -58,6 +61,7 @@ export default class AddFolder extends Component {
                             id="folder" 
                             name="folder"
                             type="text"
+                            placeholder="Awesome folder"
                             required>
                         </input>
                     </div>

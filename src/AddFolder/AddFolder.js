@@ -4,6 +4,7 @@ import NoteContext from '../NoteContext'
 import './AddFolder.css'
 
 export default class AddFolder extends Component {
+    static contextType = NoteContext;
 
     state = {
         error: null,
@@ -15,10 +16,12 @@ export default class AddFolder extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        const { name } = e.target
-        const folder = {
-            name: name.value
+        const { folder } = e.target
+        console.log(e.target)
+        const folders = {
+            name: folder.value
         }
+        console.log(folders)
         this.setState({ error: null })
         fetch(config.FOLDERS_ENDPOINT, {
             method: 'POST',
@@ -38,7 +41,7 @@ export default class AddFolder extends Component {
                 console.log(data)
                 console.log(this.context) 
                 folder.value = ''
-                //this.context.addFolder(data)
+                this.context.addFolder(data)
                 this.props.history.push('/')
             })
             .catch(error => {
@@ -51,10 +54,7 @@ export default class AddFolder extends Component {
         return (
             <section className="AddFolder">
                 <h2>Add Folder</h2>
-                <form 
-                    className="Folder-form"
-                    onSubmit={this.handleSubmit}
-                >
+                <form className="Folder-form" onSubmit={this.handleSubmit}>
                     <div className="field">
                         <label htmlFor="folder">Name</label>
                         <input 

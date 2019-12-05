@@ -3,6 +3,13 @@ import NoteContext from '../NoteContext'
 
 
 export default class AddNote extends Component {
+
+    handleSubmit = e => {
+        e.preventDefault()
+        const { content, note, folder } = e.target
+        console.log(folder.value)
+    }
+
     render() {
         return (
             <section className="AddNote">
@@ -33,9 +40,9 @@ export default class AddNote extends Component {
                         <select id="folder-select">
                             <NoteContext.Consumer>
                                 {(value) => (
-                                    value.folders.map(folder => {
+                                    value.folders.map(folder => (
                                         <option value={folder.id}>{folder.name}</option>
-                                    })
+                                    ))
                                 )}
                             </NoteContext.Consumer>
                         </select>    

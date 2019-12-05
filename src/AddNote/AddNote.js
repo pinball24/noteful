@@ -32,9 +32,11 @@ export default class AddNote extends Component {
                         <label htmlFor="folder-select">Folders</label>
                         <select id="folder-select">
                             <NoteContext.Consumer>
-                                {(value) => {
-                                    <option value={value.folders}>{value.folders}</option>
-                                }}
+                                {(value) => (
+                                    value.folders.map(folder => {
+                                        <option value={folder.id}>{folder.name}</option>
+                                    })
+                                )}
                             </NoteContext.Consumer>
                         </select>    
                     </div>

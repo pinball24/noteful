@@ -17,7 +17,6 @@ export default class NotesPage extends Component {
     }
     render() {
         console.log('Hello: ', NoteContext)
-        const { notes=[] } = this.context
         const note = this.context.notes.find(n =>
             n.id === this.props.match.params.noteId
         )

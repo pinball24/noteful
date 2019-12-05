@@ -9,6 +9,7 @@ import FolderMain from './FolderMain/FolderMain'
 import config from './config'
 import NoteContext from './NoteContext'
 import AddFolder from './AddFolder/AddFolder'
+import AddNote from './AddNote/AddNote'
 
 export default class App extends Component {
   state = {
@@ -107,6 +108,10 @@ export default class App extends Component {
           <Route
             path='/add-folder'
             component={AddFolder}
+          />
+          <Route
+            path='/add-note'
+            component={AddNote}
           />
         </NoteContext.Provider>
       </div>

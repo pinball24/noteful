@@ -37,9 +37,11 @@ export default class FolderMain extends Component {
                     )}
                 </ul>
                 <div className="NoteMain__add-button">
-                    <button className="Note__add">
-                        Add note
-                    </button>
+                    <Link to={'/add-note'}>
+                        <button className="Note__add">
+                            Add note
+                        </button>
+                    </Link>
                 </div>
             </section>
         )

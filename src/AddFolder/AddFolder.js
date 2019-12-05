@@ -17,14 +17,13 @@ export default class AddFolder extends Component {
     handleSubmit = e => {
         e.preventDefault()
         const { folder } = e.target
-        console.log(e.target)
         const folders = {
             name: folder.value
         }
-        console.log(folders)
         this.setState({ error: null })
         fetch(config.FOLDERS_ENDPOINT, {
             method: 'POST',
+            body: JSON.stringify(folders),
             headers: {
                 'content-type': 'application/json'
             }
@@ -38,8 +37,6 @@ export default class AddFolder extends Component {
                 return res.json()
             })
             .then(data => {
-                console.log(data)
-                console.log(this.context) 
                 folder.value = ''
                 this.context.addFolder(data)
                 this.props.history.push('/')

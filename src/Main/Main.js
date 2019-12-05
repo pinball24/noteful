@@ -12,6 +12,8 @@ export default class Main extends Component {
         }
     }
     static contextType = NoteContext
+
+    NoteAddButton 
     render() {
         const { folderId } = this.props.match.params
         const { notes } = this.context
@@ -29,9 +31,11 @@ export default class Main extends Component {
                     )}
                 </ul>
                 <div className="NoteMain__add-button">
-                    <button className="Note__add">
-                        Add note
-                    </button>
+                    <Link to={'/add-note'}>
+                        <button className="Note__add">
+                            Add note
+                        </button>
+                    </Link>
                 </div>
             </section>
         )}

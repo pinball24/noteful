@@ -14,10 +14,6 @@ export default class Main extends Component {
     }
     static contextType = NoteContext
 
-    propTypes = {
-        notes: PropTypes.array
-    }
-
     render() {
         const { notes } = this.context
         return (
@@ -42,6 +38,10 @@ export default class Main extends Component {
                 </div>
             </section>
         )}
+}
+
+Main.propTypes = {
+    notes: PropTypes.array
 }
 
 

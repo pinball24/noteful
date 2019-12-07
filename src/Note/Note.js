@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom'
 import NoteContext from '../NoteContext'
 import './Note.css'
 import config from '../config'
+import PropTypes from 'prop-types'
 
 export default class Note extends Component {
     static defaultProps = {
+        modified: '',
         onDeleteNote: () => {}
     }
     static contextType = NoteContext
@@ -56,4 +58,10 @@ export default class Note extends Component {
             </div>
         )
     }
+}
+
+Note.propTypes = {
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    modified: PropTypes.string
 }

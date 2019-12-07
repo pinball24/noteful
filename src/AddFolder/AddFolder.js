@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import config from '../config'
 import NoteContext from '../NoteContext'
 import './AddFolder.css'
+import PropTypes from 'prop-types'
 
 export default class AddFolder extends Component {
     static contextType = NoteContext;
@@ -20,7 +21,6 @@ export default class AddFolder extends Component {
         const folders = {
             name: folder.value
         }
-        this.setState({ error: null })
         fetch(config.FOLDERS_ENDPOINT, {
             method: 'POST',
             body: JSON.stringify(folders),
@@ -37,7 +37,6 @@ export default class AddFolder extends Component {
                 return res.json()
             })
             .then(data => {
-                folder.value = ''
                 this.context.addFolder(data)
                 this.props.history.push('/')
             })
@@ -74,4 +73,8 @@ export default class AddFolder extends Component {
             </section>
         )
     }
+}
+
+AddFolder.propTypes = {
+    name: PropTypes.string.isRequired
 }

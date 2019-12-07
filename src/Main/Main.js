@@ -2,6 +2,7 @@ import React, {Component } from 'react'
 import { Link } from 'react-router-dom'
 import './Main.css'
 import NoteContext from '../NoteContext'
+import PropTypes from 'prop-types'
 import Note from '../Note/Note'
 
 
@@ -9,13 +10,11 @@ export default class Main extends Component {
     static defaultProps = {
         match: {
             params: {}
-        }
+        },
     }
     static contextType = NoteContext
 
-    NoteAddButton 
     render() {
-        const { folderId } = this.props.match.params
         const { notes } = this.context
         return (
             <section className="Main__list">
@@ -39,4 +38,8 @@ export default class Main extends Component {
                 </div>
             </section>
         )}
+}
+
+Main.propTypes = {
+    notes: PropTypes.array
 }

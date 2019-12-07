@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './FolderMain.css'
+import Note from '../Note/Note'
 import NoteContext from '../NoteContext'
 
 export default class FolderMain extends Component {
@@ -11,8 +12,12 @@ export default class FolderMain extends Component {
     }
     static contextType = NoteContext
 
+    deleteNote = noteId => {
+        console.log(noteId)
+        this.props.history.push('/')
+    }
+
     render() {
-        const { folders=[], notes=[] } = this.context
         const folderNotes = this.context.notes.filter(note => 
             note.folderId === this.props.match.params.folderId)
         return (
@@ -20,19 +25,11 @@ export default class FolderMain extends Component {
                 <ul>
                     {folderNotes.map(note => 
                     <li key={note.id}>
-                        <div className="Note">
-                            <h2 className="Note__title">
-                                <Link to={`/note/${note.id}`}>
-                                    {note.name}
-                                </Link>
-                            </h2>
-                            <button className="Note__delete" type="button">
-                                Delete Note
-                            </button>
-                            <div className="Note__modified">
-                                Date modified on {note.modified}
-                            </div>
-                        </div>
+                        <Note 
+                            id={note.id}
+                            name={note.name}
+                            modified={note.modified}
+                        />
                     </li>
                     )}
                 </ul>

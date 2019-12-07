@@ -10,6 +10,7 @@ import config from './config'
 import NoteContext from './NoteContext'
 import AddFolder from './AddFolder/AddFolder'
 import AddNote from './AddNote/AddNote'
+import AppError from './AppError/AppError'
 
 export default class App extends Component {
   state = {
@@ -27,6 +28,12 @@ export default class App extends Component {
   addFolder = folder => {
     this.setState({
       folders: [...this.state.folders, folder],
+    })
+  }
+
+  addNote = note => {
+    this.setState({
+      notes: [...this.state.notes, note],
     })
   }
 
@@ -82,38 +89,41 @@ export default class App extends Component {
       notes: this.state.notes,
       deleteNote: this.deleteNote,
       addFolder: this.addFolder,
+      addNote: this.addNote,
     }
 
     return (
       <div className="App">
         <Header />
-        <NoteContext.Provider value={contextValue}>          
-          <Route
-            exact
-            path='/'
-            component={Main}
-          />
-          <Route
-            path='/folder/:folderId'
-            component={FolderMain}
-          />
-          <Route
-            path='/'
-            component={Sidebar}
-          />
-          <Route
-            path='/note/:noteId'
-            component={NotesPage}
-          />
-          <Route
-            path='/add-folder'
-            component={AddFolder}
-          />
-          <Route
-            path='/add-note'
-            component={AddNote}
-          />
-        </NoteContext.Provider>
+        <AppError>
+          <NoteContext.Provider value={contextValue}>          
+            <Route
+              exact
+              path='/'
+              component={Main}
+            />
+            <Route
+              path='/folder/:folderId'
+              component={FolderMain}
+            />
+            <Route
+              path='/'
+              component={Sidebar}
+            />
+            <Route
+              path='/note/:noteId'
+              component={NotesPage}
+            />
+            <Route
+              path='/add-folder'
+              component={AddFolder}
+            />
+            <Route
+              path='/add-note'
+              component={AddNote}
+            />
+          </NoteContext.Provider>
+        </AppError>
       </div>
     )
   }

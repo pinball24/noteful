@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './FolderMain.css'
 import Note from '../Note/Note'
 import NoteContext from '../NoteContext'
+import PropTypes from 'prop-types'
 
 export default class FolderMain extends Component {
     static defaultProps = {
@@ -43,4 +44,14 @@ export default class FolderMain extends Component {
             </section>
         )
     }
+}
+
+FolderMain.propTypes = {
+    notes: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        folderId: PropTypes.string.isRequired,
+        content: PropTypes.string,
+        modified: PropTypes.string,
+    }))
 }

@@ -2,14 +2,10 @@ import React, { Component } from 'react'
 import config from '../config'
 import NoteContext from '../NoteContext'
 import './AddFolder.css'
-import PropTypes from 'prop-types'
 
 export default class AddFolder extends Component {
     static contextType = NoteContext;
 
-    state = {
-        error: null,
-    };
 
     handleClickCancel = () => {
         this.props.history.push('/')
@@ -58,6 +54,7 @@ export default class AddFolder extends Component {
                             name="folder"
                             type="text"
                             placeholder="Awesome folder"
+                            defaultValue=""
                             required>
                         </input>
                     </div>
@@ -73,8 +70,4 @@ export default class AddFolder extends Component {
             </section>
         )
     }
-}
-
-AddFolder.propTypes = {
-    name: PropTypes.string.isRequired
 }

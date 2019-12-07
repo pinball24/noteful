@@ -11,26 +11,7 @@ export default class Sidebar extends Component {
   }
   static contextType = NoteContext
 
-  renderList = folders => {
-    return (
-      <div className='FolderListNav'>
-        <ul className="FolderListNav__list">
-            {folders.map(folder => (
-              <li key={folder.id}>
-            <NavLink className="FolderListNav__item" to={`/folder/${folder.id}`}>
-              {folder.name}
-            </NavLink>
-          </li>
-        ))}
-          <div className="FolderListNav__button-wrapper">
-            <Link to={'/add-folder'}>
-              Add Folder
-            </Link>
-          </div>
-        </ul>
-      </div>
-    )
-  }
+
   render() {
     function renderList(folders) {
       return (

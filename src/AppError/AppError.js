@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class FolderError extends Component {
+export default class AppError extends Component {
     constructor(props) {
         super(props);
         this.state = {

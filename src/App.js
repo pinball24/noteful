@@ -95,35 +95,45 @@ export default class App extends Component {
     return (
       <div className="App">
         <Header />
-        <AppError>
-          <NoteContext.Provider value={contextValue}>          
-            <Route
-              exact
-              path='/'
-              component={Main}
-            />
-            <Route
-              path='/folder/:folderId'
-              component={FolderMain}
-            />
-            <Route
-              path='/'
-              component={Sidebar}
-            />
-            <Route
-              path='/note/:noteId'
-              component={NotesPage}
-            />
-            <Route
-              path='/add-folder'
-              component={AddFolder}
-            />
-            <Route
-              path='/add-note'
-              component={AddNote}
-            />
+          <NoteContext.Provider value={contextValue}>
+            <AppError>         
+              <Route
+                exact
+                path='/'
+                component={Main}
+              />
+            </AppError>
+            <AppError>
+              <Route
+                path='/folder/:folderId'
+                component={FolderMain}
+              />
+            </AppError>
+            <AppError>
+              <Route
+                path='/'
+                component={Sidebar}
+              />
+            </AppError>
+            <AppError>
+              <Route
+                path='/note/:noteId'
+                component={NotesPage}
+              />
+            </AppError>
+            <AppError>
+              <Route
+                path='/add-folder'
+                component={AddFolder}
+              />
+            </AppError>
+            <AppError>
+              <Route
+                path='/add-note'
+                component={AddNote}
+              />
+            </AppError>
           </NoteContext.Provider>
-        </AppError>
       </div>
     )
   }

@@ -9,6 +9,7 @@ export default class AddNote extends Component {
     state = {
         name: '',
         content: '',
+        modified: new Date(),
         folderId: null,
     }
 
@@ -29,6 +30,8 @@ export default class AddNote extends Component {
             content: value
         })
     }
+
+    
 
     handleSubmit = e => {
         e.preventDefault()

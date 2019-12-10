@@ -5,3 +5,7 @@ li {
 .Main__list ul {
     list-style-type: none;
 }
+
+.Main__list {
+    background-color: #102541;
+}

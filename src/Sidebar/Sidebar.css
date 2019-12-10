@@ -1,9 +1,14 @@
 .App__nav {
-    background-color: grey;
+    background-color:#0b1b32;
     color: #fff;
     grid-area: sidebar;
     height: 100%;
     overflow: auto;
+}
+
+.App__nav a {
+    text-decoration: none;
+    color: #cacaca;
 }
 
 .FolderListNav__list {

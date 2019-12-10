@@ -1,13 +1,28 @@
 .Note {
     --note-height: 88px;
-    margin: 0;
+    margin: 5px;
     padding: 10px 0 10px 10px;
     position: relative;
     max-width: 400px;
     border: 1px solid black;
+    background-color: #010d1e;
+    color: #cacaca;
+}
+
+.Note a {
+    text-decoration: none;
+    color: #cacaca;
 }
 
 .Note__delete {
     float: right;
     border-radius: 0px;
+}
+
+.Note a:hover {
+    color: green;
+}
+
+.Note a:focus {
+    color: green;
 }
